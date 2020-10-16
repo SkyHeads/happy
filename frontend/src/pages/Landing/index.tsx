@@ -1,5 +1,6 @@
 import React from 'react';
 import { FiArrowRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import logoImg from '../../assets/images/logo.svg';
 
 import { Container, ContentWrapper, ContentLocation } from './styles';
@@ -20,9 +21,9 @@ const Landing: React.FC = () => {
           <span>Santa Catarina</span>
         </ContentLocation>
 
-        <a href="">
+        <Link to="/orphanages" className="enter-app">
           <FiArrowRight size={26} color="rgba(0, 0, 0, 0.6)"/>
-        </a>
+        </Link>
       </ContentWrapper>
     </Container>
   );
