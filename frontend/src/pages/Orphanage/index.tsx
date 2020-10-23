@@ -1,13 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { FiClock, FiInfo } from 'react-icons/fi';
 import { Map, Marker, TileLayer } from 'react-leaflet';
 
 import './orphanage.css';
+import { useParams } from 'react-router-dom';
 import Siderbar from '../../components/Siderbar';
 import mapIcon from '../../utils/mapIcon';
+import api from '../../services/api';
 
-export default function Orphanage() {
+interface Orphanage {
+  latitude: number;
+  longitude: number;
+  name: string;
+  description: string;
+  instructions: string;
+  opening_hours: string;
+  open_on_weekends: string;
+}
+
+interface OrphanageParams {
+  id: string;
+}
+
+const Orphanage: React.FC = () => {
+  const params = useParams<OrphanageParams>();
+  const [orphanage, setOrphanage] = useState<Orphanage>();
+
+  useEffect(() => {
+    api.get(`/orphanages/${params.id}`).then(response => {
+      const orphanagesApi = response.data;
+      setOrphanage(orphanagesApi);
+    });
+  }, [params.id]);
+
+  if (!orphanage) {
+    return <p>Carregando dados...</p>;
+  }
+
   return (
     <div id="page-orphanage">
       <Siderbar />
@@ -103,15 +133,11 @@ export default function Orphanage() {
             <div className="open-details">
               <div className="hour">
                 <FiClock size={32} color="#15B6D6" />
-                Segunda à Sexta
-{' '}
-<br />
-                8h às 18h
+                Segunda à Sexta, 8h às 18h
               </div>
               <div className="open-on-weekends">
                 <FiInfo size={32} color="#39CC83" />
-                Atendemos <br />
-                fim de semana
+                Atendemos fim de semana
               </div>
             </div>
 
@@ -124,4 +150,6 @@ export default function Orphanage() {
       </main>
     </div>
   );
-}
+};
+
+export default Orphanage;
