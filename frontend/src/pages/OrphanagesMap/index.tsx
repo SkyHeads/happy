@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiArrowRight, FiPlus } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
@@ -8,8 +8,18 @@ import mapMarkerImg from '../../assets/images/map-marker.svg';
 
 import { Container, OrphanageAside } from './styles';
 import mapIcon from '../../utils/mapIcon';
+import api from '../../services/api';
 
 const OrphanagesMap: React.FC = () => {
+  const [orphanages, setOrphanages] = useState([]);
+
+  useEffect(() => {
+    api.get('orphanages').then(response => {
+      const orphanages = response.data;
+      setOrphanages(orphanages);
+    });
+  }, [orphanages]);
+
   return (
     <Container>
       <OrphanageAside>
@@ -31,10 +41,8 @@ const OrphanagesMap: React.FC = () => {
       >
         {/* <TileLayer url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */}
         <TileLayer url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`} />
-        <Marker
-          position={[-23.630786,-46.5140821]}
-          icon={mapIcon}
-        >
+        
+        <Marker position={[-23.630786,-46.5140821]} icon={mapIcon}>
           <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup">
             Lar das meninas
             <Link to="/orphanages/1">
@@ -42,6 +50,7 @@ const OrphanagesMap: React.FC = () => {
             </Link>
           </Popup>
         </Marker>
+
       </Map>
 
       <Link to="/orphanages/create" className="create-orphanage">
