@@ -31,6 +31,7 @@ export default class Orphanage {
   @OneToMany(() => Image, image => image.orphanage, {
     cascade: ['insert', 'update']
   })
+  
   @JoinColumn({ name: 'orphanage_id' })
   images: Image[];
 }
