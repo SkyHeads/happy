@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
-import 'leaflet/dist/leaflet.css';
-
 import mapMarkerImg from '../../assets/images/map-marker.svg';
 
 import { Container, OrphanageAside } from './styles';
