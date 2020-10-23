@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Landing from './pages/Landing';
 import OrphanagesMap from './pages/OrphanagesMap';
@@ -17,7 +17,7 @@ const Routes: React.FC = () => {
         <Route path="/orphanages/:id" component={Orphanage} />
       </Switch>
     </BrowserRouter>
-  )
+  );
 };
 
 export default Routes;

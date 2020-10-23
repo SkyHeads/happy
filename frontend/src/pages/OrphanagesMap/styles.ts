@@ -30,12 +30,12 @@ export const Container = styled.div`
     transition: background-color 0.5s;
 
     &:hover {
-      background: #17d6eb; 
+      background: #17d6eb;
     }
   }
 
   .map-popup .leaflet-popup-content-wrapper {
-    background: rgba(255,255,255, 0.8);
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
     box-shadow: none;
   }

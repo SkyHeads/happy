@@ -9,7 +9,7 @@ const Landing: React.FC = () => {
   return (
     <Container>
       <ContentWrapper>
-        <img src={logoImg} alt="Happy Logo"/>
+        <img src={logoImg} alt="Happy Logo" />
 
         <main>
           <h1>Leve felicidade para o mundo</h1>
@@ -22,11 +22,11 @@ const Landing: React.FC = () => {
         </ContentLocation>
 
         <Link to="/app" className="enter-app">
-          <FiArrowRight size={26} color="rgba(0, 0, 0, 0.6)"/>
+          <FiArrowRight size={26} color="rgba(0, 0, 0, 0.6)" />
         </Link>
       </ContentWrapper>
     </Container>
   );
-}
+};
 
 export default Landing;

@@ -86,4 +86,3 @@ export const ContentLocation = styled.div`
     font-weight: 800;
   }
 `;
-
