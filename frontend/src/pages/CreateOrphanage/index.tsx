@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { Map, Marker, TileLayer } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
 
@@ -11,6 +11,12 @@ import mapIcon from '../../utils/mapIcon';
 const CreateOrphanage: React.FC = () => {
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
 
+  const [name, setName] = useState('');
+  const [about, setAbout] = useState('');
+  const [instructions, setInstructions] = useState('');
+  const [opening_hours, setOpeningHours] = useState('');
+  const [opening_on_weekends, setOpeningWeekends] = useState(true);
+
   function handleMapClick(event: LeafletMouseEvent) {
     const { lat, lng } = event.latlng;
 
@@ -20,12 +26,29 @@ const CreateOrphanage: React.FC = () => {
     });
   }
 
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+
+    const { latitude, longitude } = position;
+
+    console.log({
+      position,
+      name,
+      about,
+      latitude,
+      longitude,
+      instructions,
+      opening_hours,
+      opening_on_weekends,
+    });
+  }
+
   return (
     <div id="page-create-orphanage">
       <Siderbar />
 
       <main>
-        <form className="create-orphanage-form">
+        <form className="create-orphanage-form" onSubmit={handleSubmit}>
           <fieldset>
             <legend>Dados</legend>
 
@@ -50,14 +73,23 @@ const CreateOrphanage: React.FC = () => {
 
             <div className="input-block">
               <label htmlFor="name">Nome</label>
-              <input id="name" />
+              <input
+                id="name"
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
             </div>
 
             <div className="input-block">
               <label htmlFor="about">
                 Sobre <span>Máximo de 300 caracteres</span>
               </label>
-              <textarea id="name" maxLength={300} />
+              <textarea
+                id="name"
+                maxLength={300}
+                value={about}
+                onChange={e => setAbout(e.target.value)}
+              />
             </div>
 
             <div className="input-block">
@@ -65,7 +97,7 @@ const CreateOrphanage: React.FC = () => {
 
               <div className="uploaded-image" />
 
-              <button className="new-image">
+              <button type="button" className="new-image">
                 <FiPlus size={24} color="#15b6d6" />
               </button>
             </div>
@@ -76,22 +108,40 @@ const CreateOrphanage: React.FC = () => {
 
             <div className="input-block">
               <label htmlFor="instructions">Instruções</label>
-              <textarea id="instructions" />
+              <textarea
+                id="instructions"
+                value={instructions}
+                onChange={e => setInstructions(e.target.value)}
+              />
             </div>
 
             <div className="input-block">
-              <label htmlFor="opening_hours">Nome</label>
-              <input id="opening_hours" />
+              <label htmlFor="opening_hours">Hórario de funcionamento</label>
+              <input
+                id="opening_hours"
+                value={opening_hours}
+                onChange={e => setOpeningHours(e.target.value)}
+              />
             </div>
 
             <div className="input-block">
               <label htmlFor="open_on_weekends">Atende fim de semana</label>
 
               <div className="button-select">
-                <button type="button" className="active">
+                <button
+                  type="button"
+                  className={opening_on_weekends ? 'active' : ''}
+                  onClick={() => setOpeningWeekends(true)}
+                >
                   Sim
                 </button>
-                <button type="button">Não</button>
+                <button
+                  type="button"
+                  className={!opening_on_weekends ? 'active' : ''}
+                  onClick={() => setOpeningWeekends(false)}
+                >
+                  Não
+                </button>
               </div>
             </div>
           </fieldset>
