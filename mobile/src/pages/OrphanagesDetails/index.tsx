@@ -9,6 +9,6 @@ const OrphanagesDetails: React.FC = () => {
       <Text>Orphanage Details</Text>
     </View>
   );
-}
+};
 
 export default OrphanagesDetails;
