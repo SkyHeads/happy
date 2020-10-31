@@ -6,11 +6,12 @@ import {
   Text,
   StyleSheet,
   Dimensions,
+  Linking,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { Feather, FontAwesome } from '@expo/vector-icons';
 
-import { RectButton } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useRoute } from '@react-navigation/native';
 import mapMarkerImg from '../../images/map-marker.png';
 import api from '../../services/api';
@@ -52,6 +53,12 @@ const OrphanageDetails: React.FC = () => {
       <View style={styles.container}>
         <Text style={styles.description}>Carregando...</Text>
       </View>
+    );
+  }
+
+  function handleOpenGoogleMapRoutes() {
+    Linking.openURL(
+      `https://www.google.com/maps/dir/?api=1&destination=${orphanage?.latitude},${orphanage?.longitude}`,
     );
   }
 
@@ -100,9 +107,12 @@ const OrphanageDetails: React.FC = () => {
             />
           </MapView>
 
-          <View style={styles.routesContainer}>
+          <TouchableOpacity
+            onPress={handleOpenGoogleMapRoutes}
+            style={styles.routesContainer}
+          >
             <Text style={styles.routesText}>Ver rotas no Google Maps</Text>
-          </View>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.separator} />
