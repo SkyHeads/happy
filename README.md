@@ -41,3 +41,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 ## :memo: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
+
+<h4 align="center">
+    Feito com 💜 by <a href="https://www.linkedin.com/in/bruno-fernandes-517026187/" target="_blank">Bruno Fernandes</a>
+</h4>
