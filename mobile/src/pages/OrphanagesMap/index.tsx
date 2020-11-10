@@ -38,10 +38,10 @@ const OrphanagesMap: React.FC = () => {
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         initialRegion={{
-          latitude: -23.6387626,
-          longitude: -46.5192747,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.008,
+          latitude: -23.6748365,
+          longitude: -46.5454621,
+          latitudeDelta: 0.04,
+          longitudeDelta: 0.05,
         }}
       >
         {orphanages.map(orphanage => {
